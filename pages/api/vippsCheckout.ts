@@ -21,7 +21,7 @@ export default function handler(
         "currency": "NOK",
         "value": 1000
       },
-      "reference": "2661491668015044535",
+      "reference": "2661491668015044537",
       "paymentDescription": "This payment is for testing :)"
     },
       "contactFields": false,
@@ -49,6 +49,7 @@ export default function handler(
         }).then((response) => response.json())
         .then((data) => {
           res.status(200).json({token: data.token, url: data.checkoutFrontendUrl})
+          console.log(data)
           //For later use?
           //const pollingUrl = data.pollingUrl
         })

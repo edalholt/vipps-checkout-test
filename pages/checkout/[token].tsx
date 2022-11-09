@@ -10,7 +10,7 @@ function checkout() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        if (!loading) {
+        if (!loading && token) {
         const vippsCheckout = VippsCheckout({
             checkoutFrontendUrl: 'https://checkout-mt.vipps.no/',
             iFrameContainerId: 'vipps-checkout-frame-container',
@@ -18,14 +18,14 @@ function checkout() {
             token: token,
         })
     }
-    }, [loading])
+    }, [loading, token])
 
-if (loading) return (<Script src="https://checkout.vipps.no/vippsCheckoutSDK.js" onLoad={() => (setLoading(false))} />)
   return (
     <>
-    <Script src="https://checkout.vipps.no/vippsCheckoutSDK.js" />
+    <Script src="https://checkout.vipps.no/vippsCheckoutSDK.js" onLoad={() => {setLoading(false); console.log("ok")}} />
     <section id="vipps-checkout-frame-container">
     </section>
+    <p onClick={() => (router.reload(window.location.pathname))}>Click here if vipps does not show</p>
     </>
   )
 }

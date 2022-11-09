@@ -10,6 +10,7 @@ export default function Home() {
   const name = "Ola Nordmann"
 
   const handePayment = () => {
+    console.log(membership)
     fetch('api/vippsCheckout', {
       method: 'POST',
       headers: {
